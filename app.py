@@ -19,6 +19,12 @@ today = datetime.datetime.today()
 week_num = today.isocalendar()[1]
 st.write ("Vecka:", week_num,"")
 
+
+AWS_REGION ="us-east-1"
+
+dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION)
+
+
 def add_entry(date, text, today):
     table.put_item(
         Item={
