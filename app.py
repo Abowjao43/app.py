@@ -1,26 +1,29 @@
+import boto3
+from boto3 import resource
+from boto3.dynamodb.conditions import Attr, Key
 import streamlit as st
 import pandas as pd
-#from datetime import datetime
+from datetime import datetime
 import  datetime
 from ast import main
 
+AWS_REGION ="us-east-1"
+
+dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION)
+
+table = dynamodb.Table("inlagg")
+
 st.title("Dagbok")
-
-
 
 
 st.header("Skriv ett nytt inlägg")
 date = st.date_input("Datum", datetime.datetime.now())
 text = st.text_area("Inlägg", height=200)
-
 today = datetime.datetime.today()
 week_num = today.isocalendar()[1]
 st.write ("Vecka:", week_num,"")
 
 
-AWS_REGION ="us-east-1"
-
-dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION)
 
 
 def add_entry(date, text, today):
@@ -78,3 +81,5 @@ st.sidebar.write("Justera dina inställningar här.")
 
 if __name__ == "__main__":
    main()
+
+   
