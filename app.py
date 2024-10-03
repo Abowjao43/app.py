@@ -17,7 +17,6 @@ today = datetime.datetime.today()
 week_num = today.isocalendar()[1]
 st.write ("Vecka:", week_num,"")
 
-table = dynamodb.Table("inlagg")
 
 AWS_REGION ="us-east-1"
 
